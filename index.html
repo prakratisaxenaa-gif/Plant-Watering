@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pastel Pomodoro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+  <header class="top">
+    <h1>Pastel Pomodoro</h1>
+    <p class="sub">Finish a 25-minute focus sprint and your plant gets watered. Four sprints grow one flower.</p>
+  </header>
+
+  <main class="grid">
+    <div class="col">
+      <section class="win" aria-labelledby="t-plant">
+        <div class="bar sage"><i></i><i></i><i></i><h2 id="t-plant">window_sill</h2><span class="bar-note" id="plantName">Blush tulip</span></div>
+        <div class="scene"><canvas id="scene" width="48" height="48" role="img" aria-label="Pixel-art potted plant on a shelf"></canvas></div>
+        <div class="plant-info">
+          <div class="growth"><div class="pips" id="pips" aria-hidden="true"></div><b id="pipLabel">Sprint 0 of 4</b></div>
+          <p class="status" id="plantStatus"></p>
+          <div><button class="btn sage" id="newSeed" type="button" hidden>Plant a new seed</button></div>
+        </div>
+      </section>
+
+      <section class="win" aria-labelledby="t-timer">
+        <div class="bar rose"><i></i><i></i><i></i><h2 id="t-timer">focus_timer</h2></div>
+        <div class="body">
+          <div class="modes" role="group" aria-label="Timer mode">
+            <button class="btn" type="button" data-mode="focus">Focus 25</button>
+            <button class="btn" type="button" data-mode="short">Break 5</button>
+            <button class="btn" type="button" data-mode="long">Long break 15</button>
+          </div>
+          <div class="digits" id="digits" role="timer" aria-live="off">25:00</div>
+          <div class="seg" id="seg" data-mode="focus" aria-hidden="true"></div>
+          <div class="ctrls">
+            <button class="btn primary" id="startBtn" type="button">Start</button>
+            <button class="btn" id="resetBtn" type="button">Reset</button>
+            <button class="btn quiet small" id="skipBtn" type="button">Finish now</button>
+          </div>
+          <p class="hint">Each block in the bar is one minute. Finish now skips the wait and counts as a sprint.</p>
+          <p class="event" id="event" aria-live="polite"></p>
+        </div>
+      </section>
+    </div>
+
+    <div class="col">
+      <section class="win" aria-labelledby="t-stats">
+        <div class="bar sun"><i></i><i></i><i></i><h2 id="t-stats">this_week</h2></div>
+        <div class="body">
+          <dl class="stats">
+            <div><dt>Today</dt><dd id="sToday">0</dd></div>
+            <div><dt>Day streak</dt><dd id="sStreak">0</dd></div>
+            <div><dt>Focus time</dt><dd id="sTime">0m</dd></div>
+            <div><dt>Blooms</dt><dd id="sBlooms">0</dd></div>
+          </dl>
+          <div class="week" id="week"></div>
+          <p class="hint">A full column is 4 sprints, the amount that grows one flower.</p>
+        </div>
+      </section>
+
+      <section class="win" aria-labelledby="t-garden">
+        <div class="bar sage"><i></i><i></i><i></i><h2 id="t-garden">garden_shelf</h2></div>
+        <div class="body">
+          <p class="empty" id="gardenEmpty">No blooms yet. Four focus sprints grow your first flower, and it moves here.</p>
+          <ul class="garden" id="garden"></ul>
+        </div>
+      </section>
+
+      <section class="win" aria-labelledby="t-sound">
+        <div class="bar rose"><i></i><i></i><i></i><h2 id="t-sound">sound</h2></div>
+        <div class="body">
+          <div class="row">
+            <button class="btn" id="musicBtn" type="button" aria-pressed="false">Lo-fi: off</button>
+            <button class="btn" id="chimeBtn" type="button" aria-pressed="true">Chime: on</button>
+          </div>
+          <div class="vol"><label for="vol">Volume</label><input id="vol" type="range" min="0" max="100" step="1" value="50"></div>
+          <div class="danger-row">
+            <button class="btn quiet small" id="clearBtn" type="button">Clear all progress</button>
+            <span id="clearAsk" hidden>
+              <span>Delete plants, streak and history?</span>
+              <button class="btn small" id="clearYes" type="button">Yes, clear</button>
+              <button class="btn small" id="clearNo" type="button">Keep it</button>
+            </span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
